@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { bgLogin, white } from "UI/variaveis";
 import loginImg from "../../assets/loginImg.png";
 
+interface IError{
+  appear: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   background: ${bgLogin};
@@ -53,7 +57,7 @@ export const ContainerText = styled.div`
   }
 `;
 
-export const ContainerInput = styled.div`
+export const ContainerInput = styled.div<IError>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -61,18 +65,6 @@ export const ContainerInput = styled.div`
   h3 {
     font-size: 30px;
     font-weight: 400;
-  }
-
-  p {
-    color: #e9b425;
-    font-weight: 700;
-    text-align: center;
-    position: absolute;
-    max-width: 55%;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
-    display: none;
   }
 
   div {
@@ -88,6 +80,7 @@ export const ContainerInput = styled.div`
     color: ${white};
     padding: 20px;
     width: 100%;
+    border: ${(props) => (props.appear ? '1px solid #e9b425' : '1px solid #ffffff')};
   }
 
   i {
@@ -99,6 +92,22 @@ export const ContainerInput = styled.div`
   }
   .icon-inside {
     right: 20px;
+  }
+`;
+
+
+
+export const ErrorMessage = styled.div<IError>`
+  display: ${(props) => (props.appear ? 'block' : 'none')};
+  p {
+    color: #e9b425;
+    font-weight: 700;
+    text-align: center;
+    position: absolute;
+    max-width: 55%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
   }
 `;
 

@@ -1,17 +1,34 @@
-import { useRef, useState } from "react";
-import { Button, Container, ContainerBox, ContainerInput, ContainerLogin, ContainerText, ImgLogin } from "./styles";
+import { useContext, useRef } from "react";
+import { Button, Container, ContainerBox, ContainerInput, ContainerLogin, ContainerText, ErrorMessage, ImgLogin } from "./styles";
 import { useNavigate } from "react-router-dom";
 import "./styles.ts";
 import logo from "../../assets/LogoLogin.svg";
+import { UserContext } from "common/contexts/User";
 
 export default function Login() {
   const navigate = useNavigate();
   const userIconRef = useRef<HTMLElement>(null);
   const passIconRef = useRef<HTMLElement>(null);
+  const regexLogin = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const navigateHome = () => {
-    navigate("/home");
+  const { login, password, setLogin, setPassword, setTimerCount, loginError, setLoginError } = useContext(UserContext);
+
+  const submitLogin = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    if (regexLogin.test(login) && password.length > 5) {
+      setLoginError(false);
+      setTimerCount(60);
+      navigate("/home");
+      setLogin('');
+      setPassword('');
+    } else {
+      setLoginError(true);
+    }
   };
+
+  console.log({ login });
+  console.log({ password });
 
   const iconInside = (ref: React.RefObject<HTMLElement>) => {
     if (ref.current) {
@@ -23,13 +40,6 @@ export default function Login() {
     }
   };
 
-  // const [minute, setMinute] = useState(0);
-  // const [hour, setHour] = useState(0);
-  // const [day, setDay] = useState("");
-  // const [dayMonth, setDayMonth] = useState(0);
-  // const [month, setMonth] = useState("");
-  // const [year, setYear] = useState(0);
-
   return (
     <Container>
       <ContainerBox>
@@ -38,15 +48,15 @@ export default function Login() {
             <h2>Olá,</h2>
             <h4>Para continuar navegando de forma segura, efetue o login na rede.</h4>
           </ContainerText>
-          <ContainerInput>
+          <ContainerInput appear={loginError}>
             <h3>Login</h3>
             <div>
               <input
-                type="text"
-                // value={login}
-                // onChange={(event) => {
-                //   setLogin(event.target.value);
-                // }}
+                type="email"
+                value={login}
+                onChange={(event) => {
+                  setLogin(event.target.value);
+                }}
                 placeholder="Usuário"
                 onFocus={() => iconInside(userIconRef)}
                 onBlur={() => iconInside(userIconRef)}
@@ -56,21 +66,21 @@ export default function Login() {
             <div>
               <input
                 type="password"
-                // value={password}
-                // onChange={(event) => {
-                //   setPassword(event.target.value);
-                // }}
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
                 placeholder="Senha"
                 onFocus={() => iconInside(passIconRef)}
                 onBlur={() => iconInside(passIconRef)}
               />
               <i ref={passIconRef} className="fa fa-lock" aria-hidden="true"></i>
             </div>
-            <div>
+            <ErrorMessage appear={loginError}>
               <p>Ops, usuário ou senha inválidos. Tente novamente!</p>
-            </div>
+            </ErrorMessage>
           </ContainerInput>
-          <Button onClick={navigateHome}>Continuar</Button>
+          <Button onClick={(e) => submitLogin(e)}>Continuar</Button>
         </ContainerLogin>
       </ContainerBox>
       <ImgLogin>
