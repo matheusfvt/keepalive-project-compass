@@ -27,8 +27,8 @@ export default function Login() {
     }
   };
 
-  console.log({ login });
-  console.log({ password });
+  // console.log({ login });
+  // console.log({ password });
 
   const iconInside = (ref: React.RefObject<HTMLElement>) => {
     if (ref.current) {

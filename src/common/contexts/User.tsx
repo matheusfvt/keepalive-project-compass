@@ -17,7 +17,7 @@ UserContext.displayName = "UserContext";
 export default function UserProvider({ children }: any) {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [timerCount, setTimerCount] = useState<number>(60);
+  const [timerCount, setTimerCount] = useState<number>(100000);
   const [loginError, setLoginError] = useState<boolean>(false);
 
   return (
