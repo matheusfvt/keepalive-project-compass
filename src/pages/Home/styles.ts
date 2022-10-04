@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { bgFooter, black, red, white, white500 } from "UI/variaveis";
+import logo from "../../assets/LogoHome.svg";
+import logoWhite from "../../assets/LogoLogin.svg";
 
 export const Container = styled.div`
   display: flex;
@@ -21,30 +23,75 @@ export const Container = styled.div`
   @media (max-width: 900px) {
     gap: 20vw;
   }
+  @media (max-width: 280px) {
+    gap: 10vw;
+  }
 `;
 
 export const Header = styled.header`
   padding: 25px 40px 0;
   color: ${black};
+  @media (max-width: 680px) {
+    background: ${bgFooter};
+    color: ${white};
+  }
+  @media (max-width: 680px) {
+    padding-bottom: 15px;
+  }
+  @media (max-width: 525px) {
+    padding: 25px 20px 15px;
+  }
+  @media (max-width: 320px) {
+    padding: 25px 10px 15px;
+  }
 `;
 
 export const List = styled.ul`
   display: flex;
   justify-content: space-between;
   list-style: none;
+  align-items: center;
+  @media (max-width: 680px) {
+    justify-content: flex-start;
+  }
+`;
+
+export const ContainerLogo = styled.li`
+  img {
+    content: url(${logo});
+  }
+
+  @media (max-width: 680px) {
+    content: url(${logoWhite});
+    max-width: 150px;
+    max-height: 42px;
+  }
+  @media (max-width: 525px) {
+    max-width: 100px;
+    max-height: 28px;
+  }
+  @media (max-width: 525px) {
+    max-width: 75px;
+    max-height: 21px;
+  }
+  
 `;
 
 export const ContainerMain = styled.main`
   display: flex;
-  margin-right: 8vw;
+  padding-right: 8vw;
   max-height: 100%;
+  padding-bottom: 8vw;
+  @media (max-width: 525px) {
+    padding-right: 4vw;
+  }
   img {
     position: absolute;
     left: 0;
     bottom: 20px;
     max-width: 80%;
     max-height: 80%;
-    overflow: hidden;
+    z-index: 0;
     @media (max-width: 1440px) {
       max-width: 75%;
       max-height: 75%;
@@ -69,12 +116,20 @@ export const ContainerMain = styled.main`
       max-width: 60%;
       max-height: 60%;
     }
+    @media (max-width: 800px) {
+      left: -160px;
+      bottom: 75px;
+    }
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 `;
 
 export const ContainerText = styled.div`
   text-align: right;
   margin-left: auto;
+  z-index: 1;
 `;
 
 export const MText = styled.h3`
@@ -96,6 +151,12 @@ export const MText = styled.h3`
   }
   @media (max-width: 900px) {
     font-size: 20px;
+  }
+  @media (max-width: 525px) {
+    font-size: 18px;
+  }
+  @media (max-width: 320px) {
+    font-size: 14px;
   }
 `;
 
@@ -122,6 +183,25 @@ export const BText = styled.h2`
   @media (max-width: 900px) {
     font-size: 32px;
   }
+  @media (max-width: 767px) {
+    margin-top: 20px;
+  }
+  @media (max-width: 525px) {
+    font-size: 24px;
+    margin-top: 35px;
+  }
+  @media (max-width: 375px) {
+    font-size: 22px;
+    margin-top: 45px;
+  }
+  @media (max-width: 320px) {
+    font-size: 18px;
+    margin-top: 50px;
+  }
+  @media (max-width: 280px) {
+    font-size: 16px;
+    margin-top: 25px;
+  }
 `;
 export const SText = styled.p`
   font-weight: 400;
@@ -140,8 +220,15 @@ export const SText = styled.p`
   @media (max-width: 1000px) {
     font-size: 14px;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 767px) {
+    margin-top: 10px;
+  }
+  @media (max-width: 375px) {
     font-size: 12px;
+    margin-top: 15px;
+  }
+  @media (max-width: 320px) {
+    font-size: 10px;
   }
 `;
 export const Footer = styled.footer`
@@ -153,19 +240,29 @@ export const Footer = styled.footer`
   position: absolute;
   bottom: 0;
   width: 100%;
+  @media (max-width: 680px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 3vw;
+    padding-top: 3vw;
+  }
+  @media (max-width: 525px) {
+    gap: 6vw;
+    padding-top: 6vw;
+  }
+  @media (max-width: 375px) {
+    gap: 8vw;
+    padding-top: 10vw;
+  }
   .footer__text {
     max-width: 35%;
-    margin-left: 20vw;
     padding-right: 2%;
     border-right: 1px solid ${white};
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    p {
-      font-weight: 400;
-      font-size: 12px;
-    }
+    margin-left: 20vw;
     @media (max-width: 1200px) {
       margin-left: 15vw;
     }
@@ -174,6 +271,21 @@ export const Footer = styled.footer`
     }
     @media (max-width: 900px) {
       margin-left: 10vw;
+    }
+    @media (max-width: 680px) {
+      margin: 0 8vw;
+      max-width: 100%;
+      border: none;
+      padding: 0;
+    }
+    p {
+      font-weight: 400;
+      font-size: 12px;
+      margin: 2vw 0;
+      @media (max-width: 680px) {
+        margin: 0;
+        line-height: 2;
+      }
     }
   }
 `;
@@ -200,6 +312,10 @@ export const Button = styled.button<IButton>`
 
   @media (max-width: 900px) {
     width: 120px;
+  }
+  @media (max-width: 680px) {
+    width: 50vw;
+    box-shadow: ${(props) => (props.primary ? "none" : `inset 0 0 2px ${white}`)};
   }
 
   @media (max-width: 1399px) {

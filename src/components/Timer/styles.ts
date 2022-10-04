@@ -4,6 +4,7 @@ export const CountDownContainer = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
+  margin: 0 10px;
 `;
 export const CountDownText = styled.p`
   font-weight: 400;
@@ -14,7 +15,11 @@ export const CountDownText = styled.p`
   margin-right: 10px;
   @media (max-width: 900px) {
     margin-right: 6px;
-    }
+  }
+  @media (max-width: 680px) {
+    max-width: 100%;
+    margin-right: 4vw;
+  }
 `;
 
 export const CountDownWrapper = styled.div`
@@ -23,6 +28,9 @@ export const CountDownWrapper = styled.div`
   p:nth-child(2) {
     font-weight: 400;
     font-size: 14px;
+    @media (max-width: 375px) {
+    font-size: 12px;
+  }
   }
   p:first-child {
     font-weight: 700;
@@ -32,5 +40,9 @@ export const CountDownWrapper = styled.div`
       font-size: 40px;
       line-height: 36px;
     }
+    @media (max-width: 375px) {
+    font-size: 30px;
+    line-height: 26px;
+  }
   }
 `;

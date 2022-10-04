@@ -1,6 +1,6 @@
 import logo from "../../assets/LogoHome.svg";
 import logoBall from "../../assets/bolaLogoCompass.png";
-import { BText, Button, ButtonWrapper, Container, ContainerMain, ContainerText, Footer, Header, List, MText, SText } from "./styles";
+import { BText, Button, ButtonWrapper, Container, ContainerLogo, ContainerMain, ContainerText, Footer, Header, List, MText, SText } from "./styles";
 import "./styles.ts";
 import { useNavigate } from "react-router-dom";
 import Clock from "components/Clock";
@@ -15,9 +15,9 @@ export default function Home() {
       <Header>
         <nav>
           <List>
-            <li>
+            <ContainerLogo>
               <img src={logo} alt="logo compass" />
-            </li>
+            </ContainerLogo>
             <Clock />
             <Locate />
           </List>
