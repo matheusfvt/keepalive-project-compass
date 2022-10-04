@@ -1,6 +1,6 @@
 import logo from "../../assets/LogoHome.svg";
 import logoBall from "../../assets/bolaLogoCompass.png";
-import { BText, Button, ButtonWrapper, ContainerMain, ContainerText, Footer, Header, List, MText, SText } from "./styles";
+import { BText, Button, ButtonWrapper, Container, ContainerMain, ContainerText, Footer, Header, List, MText, SText } from "./styles";
 import "./styles.ts";
 import { useNavigate } from "react-router-dom";
 import Clock from "components/Clock";
@@ -11,7 +11,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Container>
       <Header>
         <nav>
           <List>
@@ -23,8 +23,6 @@ export default function Home() {
           </List>
         </nav>
       </Header>
-
-      <main>
         <ContainerMain>
           <img src={logoBall} alt="Logo compass" />
           <ContainerText>
@@ -38,7 +36,6 @@ export default function Home() {
             <SText>que permitam o crescimento dos nossos clientes</SText>
           </ContainerText>
         </ContainerMain>
-      </main>
       <Footer>
         <div className="footer__text">
           <p>Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixe-a aberta em segundo plano e abra uma nova janela para continuar a navegar.</p>
@@ -48,9 +45,9 @@ export default function Home() {
           <Button primary onClick={() => window.open("https://www.google.com.br/")}>
             Continuar navegando
           </Button>
-          <Button onClick={() => navigate('/')}>Logout</Button>
+          <Button onClick={() => navigate("/")}>Logout</Button>
         </ButtonWrapper>
       </Footer>
-    </>
+    </Container>
   );
 }

@@ -12,8 +12,7 @@ export const ItemTimezone = styled.li`
     span {
       font-weight: 700;
       font-size: 48px;
-      text-align: right;
-      margin-left: 25px;
+      margin-left: 10px;
     }
   }
 

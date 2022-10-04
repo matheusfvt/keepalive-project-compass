@@ -1,8 +1,7 @@
 import { useContext, useRef } from "react";
-import { Button, Container, ContainerBox, ContainerInput, ContainerLogin, ContainerText, ErrorMessage, ImgLogin } from "./styles";
+import { BgLogin, Button, Container, ContainerBox, ContainerInput, ContainerLogin, ContainerLogoLogin, ContainerText, ErrorMessage, LogoLogin } from "./styles";
 import { useNavigate } from "react-router-dom";
 import "./styles.ts";
-import logo from "../../assets/LogoLogin.svg";
 import { UserContext } from "common/contexts/User";
 
 export default function Login() {
@@ -20,15 +19,12 @@ export default function Login() {
       setLoginError(false);
       setTimerCount(60);
       navigate("/home");
-      setLogin('');
-      setPassword('');
+      setLogin("");
+      setPassword("");
     } else {
       setLoginError(true);
     }
   };
-
-  // console.log({ login });
-  // console.log({ password });
 
   const iconInside = (ref: React.RefObject<HTMLElement>) => {
     if (ref.current) {
@@ -44,6 +40,9 @@ export default function Login() {
     <Container>
       <ContainerBox>
         <ContainerLogin>
+          <ContainerLogoLogin>
+            <LogoLogin />
+          </ContainerLogoLogin>
           <ContainerText>
             <h2>Olá,</h2>
             <h4>Para continuar navegando de forma segura, efetue o login na rede.</h4>
@@ -83,9 +82,9 @@ export default function Login() {
           <Button onClick={(e) => submitLogin(e)}>Continuar</Button>
         </ContainerLogin>
       </ContainerBox>
-      <ImgLogin>
-        <img src={logo} alt="logo" />
-      </ImgLogin>
+      <BgLogin>
+        <LogoLogin />
+      </BgLogin>
     </Container>
   );
 }

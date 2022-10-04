@@ -6,6 +6,10 @@ text-align: center;
       font-size: 144px;
       font-weight: 700;
       line-height: 120px;
+      @media (max-width: 1330px) {
+      font-size: 120px;
+      line-height: 100px;
+  }
     }
     span {
       font-weight: 400;

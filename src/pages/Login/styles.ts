@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { bgLogin, white } from "UI/variaveis";
 import loginImg from "../../assets/loginImg.png";
+import logo from "../../assets/LogoLogin.svg";
 
-interface IError{
+interface IError {
   appear: boolean;
 }
 
@@ -11,33 +12,64 @@ export const Container = styled.div`
   background: ${bgLogin};
   box-shadow: 4px 4px 70px 0px #00000040;
   color: ${white};
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
 `;
 
 export const ContainerBox = styled.div`
   width: 50vw;
+  @media (max-width: 767px) {
+    width: 100vw;
+  }
 `;
 
-export const ImgLogin = styled(ContainerBox)`
+export const BgLogin = styled(ContainerBox)`
   background-image: url(${loginImg});
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 0;
   display: flex;
   justify-content: center;
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
 
-  img {
-    max-height: 70px;
-    max-width: 300px;
-    margin-top: 35px;
+export const LogoLogin = styled.img`
+  max-height: 65px;
+  max-width: 300px;
+  content: url(${logo});
+  margin: 35px auto 0;
+  display: flex;
+  @media (max-width: 767px) {
+    width: 55%;
+  }
+
+  @media (max-width: 425px) {
+    width: 75%;
+  }
+`;
+
+export const ContainerLogoLogin = styled.div`
+  display: none;
+
+  @media (max-width: 767px) {
+    display: flex;
   }
 `;
 
 export const ContainerLogin = styled.div`
-  margin: 160px 25%;
+  margin: 25% 25% 0;
   display: flex;
   flex-direction: column;
-  gap: 110px;
+  gap: 10vh;
+
+  @media (max-width: 1199px) {
+    margin: 30% 15%;
+  }
+
+  @media (max-width: 767px) {
+    margin: 0 15%;
+  }
 `;
 
 export const ContainerText = styled.div`
@@ -47,13 +79,25 @@ export const ContainerText = styled.div`
   gap: 17px;
   margin-bottom: 20px;
   h2 {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 60px;
+    @media (max-width: 425px) {
+      font-size: 50px;
+    }
+    @media (max-width: 374px) {
+      font-size: 44px;
+    }
   }
   h4 {
     font-weight: 400;
     max-width: 300px;
     font-size: 16px;
+    @media (max-width: 425px) {
+      font-size: 14px;
+    }
+    @media (max-width: 374px) {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -62,9 +106,18 @@ export const ContainerInput = styled.div<IError>`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  @media (max-width: 374px) {
+    gap: 25px
+  }
   h3 {
     font-size: 30px;
     font-weight: 400;
+    @media (max-width: 425px) {
+      font-size: 25px;
+    }
+    @media (max-width: 374px) {
+      font-size: 22px;
+    }
   }
 
   div {
@@ -80,7 +133,10 @@ export const ContainerInput = styled.div<IError>`
     color: ${white};
     padding: 20px;
     width: 100%;
-    border: ${(props) => (props.appear ? '1px solid #e9b425' : '1px solid #ffffff')};
+    border: ${(props) => (props.appear ? "1px solid #e9b425" : "1px solid #ffffff")};
+    @media (max-width: 425px) {
+      font-size: 14px;
+    }
   }
 
   i {
@@ -95,10 +151,8 @@ export const ContainerInput = styled.div<IError>`
   }
 `;
 
-
-
 export const ErrorMessage = styled.div<IError>`
-  display: ${(props) => (props.appear ? 'block' : 'none')};
+  display: ${(props) => (props.appear ? "block" : "none")};
   p {
     color: #e9b425;
     font-weight: 700;
@@ -122,4 +176,28 @@ export const Button = styled.button`
   font-weight: 700;
   cursor: pointer;
   box-shadow: 5px 5px 15px 0px #00000080;
+
+    @media (max-width: 374px) {
+    margin-top: 10%;
+    margin-bottom: 10%
+  }
+
+  @media (max-width: 1399px) {
+  }
+  @media (max-width: 1199px) {
+  }
+  @media (max-width: 991px) {
+  }
+  @media (max-width: 767px) {
+  }
+  @media (max-width: 574px) {
+  }
+  @media (max-width: 425px) {
+  }
+  @media (max-width: 375px) {
+  }
+  @media (max-width: 320px) {
+  }
+  @media (max-width: 280px) {
+  }
 `;

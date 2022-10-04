@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ItemTimezone } from "./styles";
 import logoTimezone from "assets/iconTimezone.svg";
 
@@ -7,7 +7,6 @@ export default function Locate() {
   const [temp, setTemp] = useState<number>(0);
   const [lat, setLat] = useState<number>();
   const [long, setLong] = useState<number>();
-  // const [data, setData] = useState<any>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +28,8 @@ export default function Locate() {
   }, [lat, long]);
 
   function defaultLocation() {
-    setLat(-23);
-    setLong(-43);
+    setLat(-23.46);
+    setLong(-46.54);
   }
 
   return (
