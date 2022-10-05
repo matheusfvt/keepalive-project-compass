@@ -182,7 +182,7 @@ export const Button = styled.button`
     margin-bottom: 10%
   }
 
-  @media (max-width: 1399px) {
+  /* @media (max-width: 1399px) {
   }
   @media (max-width: 1199px) {
   }
@@ -199,5 +199,5 @@ export const Button = styled.button`
   @media (max-width: 320px) {
   }
   @media (max-width: 280px) {
-  }
+  } */
 `;
