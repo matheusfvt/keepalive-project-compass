@@ -16,7 +16,7 @@ export const CountDownText = styled.p`
   @media (max-width: 900px) {
     margin-right: 6px;
   }
-  @media (max-width: 680px) {
+  @media (max-width: 680px), (max-height: 600px) {
     max-width: 100%;
     margin-right: 4vw;
   }
@@ -40,7 +40,7 @@ export const CountDownWrapper = styled.div`
       font-size: 40px;
       line-height: 36px;
     }
-    @media (max-width: 375px) {
+    @media (max-width: 375px), (max-height: 600px) {
     font-size: 30px;
     line-height: 26px;
   }

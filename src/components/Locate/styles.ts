@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ItemTimezone = styled.li`
-  @media (max-width: 680px) {
+  @media (max-width: 575px), (max-height: 600px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,28 +14,32 @@ export const ItemTimezone = styled.li`
     img {
       width: 40px;
       height: 40px;
-      @media (max-width: 525px) {
+      @media (max-width: 620px) {
+        width: 32px;
+        height: 32px;
+      }
+      @media (max-width: 575px), (max-height: 600px) {
         width: 25px;
         height: 25px;
       }
       @media (max-width: 320px) {
-        width: 20px;
-        height: 20px;
+        width: 23px;
+        height: 23px;
       }
     }
     span {
       font-weight: 700;
       font-size: 48px;
       margin-left: 10px;
-      @media (max-width: 680px) {
+      @media (max-width: 620px) {
         font-size: 30px;
       }
-      @media (max-width: 525px) {
+      @media (max-width: 575px), (max-height: 600px) {
         font-size: 20px;
       }
       @media (max-width: 320px) {
         font-size: 18px;
-        margin-left: 5px;
+        margin-left: 10px;
       }
     }
   }
@@ -43,10 +47,14 @@ export const ItemTimezone = styled.li`
   p {
     font-weight: 400;
     font-size: 14px;
-    @media (max-width: 680px) {
+    @media (max-width: 620px){
+      font-size: 12px;
+    }
+    @media (max-width: 575px), (max-height: 600px) {
+      font-size: 14px;
       margin: 0 auto;
     }
-    @media (max-width: 525px) {
+    @media (max-width: 425px){
       font-size: 12px;
     }
     @media (max-width: 320px) {
@@ -54,11 +62,3 @@ export const ItemTimezone = styled.li`
     }
   }
 `;
-
-// <li className="timezone">
-// <p>Passo Fundo - Brasil</p>
-// <div>
-//   <img src={logoTimezone} alt="logo timezone" />
-//   <span>22°</span>
-// </div>
-// </li>

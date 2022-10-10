@@ -23,19 +23,19 @@ export default function Home() {
           </List>
         </nav>
       </Header>
-        <ContainerMain>
-          <img src={logoBall} alt="Logo compass" />
-          <ContainerText>
-            <MText>Our mission is</MText>
-            <SText>Nossa missão é</SText>
-            <BText>to transform the world</BText>
-            <SText>transformar o mundo</SText>
-            <BText>building digital experiences</BText>
-            <SText>construindo experiências digitais</SText>
-            <BText>that enable our client's growth</BText>
-            <SText>que permitam o crescimento dos nossos clientes</SText>
-          </ContainerText>
-        </ContainerMain>
+      <ContainerMain>
+        <img src={logoBall} alt="Logo compass" />
+        <ContainerText>
+          <MText>Our mission is</MText>
+          <SText>Nossa missão é</SText>
+          <BText>to transform the world</BText>
+          <SText>transformar o mundo</SText>
+          <BText>building digital experiences</BText>
+          <SText>construindo experiências digitais</SText>
+          <BText>that enable our client's growth</BText>
+          <SText>que permitam o crescimento dos nossos clientes</SText>
+        </ContainerText>
+      </ContainerMain>
       <Footer>
         <div className="footer__text">
           <p>Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixe-a aberta em segundo plano e abra uma nova janela para continuar a navegar.</p>
