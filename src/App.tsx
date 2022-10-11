@@ -1,5 +1,7 @@
+import RegisterProvider from "common/contexts/Register";
 import UserProvider from "common/contexts/User";
 import Home from "pages/Home";
+import Register from "pages/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 // import NotFound from '../pages/NotFound'
@@ -11,17 +13,31 @@ const App = () => {
         <Route
           path="/"
           element={
-            <UserProvider>
-              <Login />
-            </UserProvider>
+            <RegisterProvider>
+              <UserProvider>
+                <Login />
+              </UserProvider>
+            </RegisterProvider>
           }
         />
         <Route
           path="/home"
           element={
-            <UserProvider>
-              <Home />
-            </UserProvider>
+            <RegisterProvider>
+              <UserProvider>
+                <Home />
+              </UserProvider>
+            </RegisterProvider>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RegisterProvider>
+              <UserProvider>
+                <Register />
+              </UserProvider>
+            </RegisterProvider>
           }
         />
       </Routes>

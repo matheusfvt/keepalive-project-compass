@@ -1,21 +1,39 @@
 import { useContext, useRef } from "react";
-import { BgLogin, Button, Container, ContainerBox, ContainerInput, ContainerLogin, ContainerLogoLogin, ContainerText, ErrorMessage, LogoLogin } from "./styles";
+import { BgLogin, Button, ClickHereMessage, Container, ContainerBox, ContainerInput, ContainerLogin, ContainerLogoLogin, ContainerText, ErrorMessage, LogoLogin } from "./styles";
 import { useNavigate } from "react-router-dom";
 import "./styles.ts";
 import { UserContext } from "common/contexts/User";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "services/fireBaseConfig";
+
 
 export default function Login() {
   const navigate = useNavigate();
   const userIconRef = useRef<HTMLElement>(null);
   const passIconRef = useRef<HTMLElement>(null);
-  const regexLogin = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const { login, password, setLogin, setPassword, setTimerCount, loginError, setLoginError } = useContext(UserContext);
 
   const submitLogin = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    if (regexLogin.test(login) && password.length > 5) {
+    const auth = getAuth(app);
+
+    signInWithEmailAndPassword(auth, login, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        alert('logado')
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(`${errorCode} ${errorMessage}`);
+        
+      });
+
+    if (password.length > 5) {
       setLoginError(false);
       setTimerCount(60);
       navigate("/home");
@@ -80,6 +98,16 @@ export default function Login() {
             </ErrorMessage>
           </ContainerInput>
           <Button onClick={(e) => submitLogin(e)}>Continuar</Button>
+          <ClickHereMessage>
+            <p>Ainda não tem uma conta?</p>
+            <span
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Clique aqui para criar
+            </span>
+          </ClickHereMessage>
         </ContainerLogin>
       </ContainerBox>
       <BgLogin>

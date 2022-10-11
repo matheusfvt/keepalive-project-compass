@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bgFooter, black, red, white, white500 } from "UI/variaveis";
+import { bgFooter, black, red, white, white500 } from "UI/variables";
 import logo from "../../assets/LogoHome.svg";
 import logoWhite from "../../assets/LogoLogin.svg";
 
