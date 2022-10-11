@@ -2,31 +2,33 @@ import { RegisterContext } from "common/contexts/Register";
 import { regexLowercase, regexUppercase, regexNumber, regexSpecialCharacter } from "helper/regex";
 import { useContext } from "react";
 import { BsCheckCircle, BsFillCheckCircleFill } from "react-icons/bs";
+import { CheckListContainer, CheckListItem } from "./styles";
 
 export default function RegisterCheckList() {
   const { password } = useContext(RegisterContext);
+  
   return (
-    <div>
-      <p>
+    <CheckListContainer>
+      <CheckListItem>
         {password.length > 5 ? <BsFillCheckCircleFill color={"green"} /> : <BsCheckCircle color={"red"} />}
-        Mínimo 6 dígitos
-      </p>
-      <p>
+        <span>Mínimo 6 dígitos</span>
+      </CheckListItem>
+      <CheckListItem>
         {password.match(regexLowercase) ? <BsFillCheckCircleFill color={"green"} /> : <BsCheckCircle color={"red"} />}
-        Letra minúscula
-      </p>
-      <p>
+        <span>Letra minúscula</span>
+      </CheckListItem>
+      <CheckListItem>
         {password.match(regexUppercase) ? <BsFillCheckCircleFill color={"green"} /> : <BsCheckCircle color={"red"} />}
-        Letra maiúscula
-      </p>
-      <p>
+        <span>Uma letra maiúscula</span>
+      </CheckListItem>
+      <CheckListItem>
         {password.match(regexNumber) ? <BsFillCheckCircleFill color={"green"} /> : <BsCheckCircle color={"red"} />}
-        Um número
-      </p>
-      <p>
+        <span>Um número</span>
+      </CheckListItem>
+      <CheckListItem>
         {password.match(regexSpecialCharacter) ? <BsFillCheckCircleFill color={"green"} /> : <BsCheckCircle color={"red"} />}
-        Caractere Especial
-      </p>
-    </div>
+        <span>Caractere Especial</span>
+      </CheckListItem>
+    </CheckListContainer>
   );
 }

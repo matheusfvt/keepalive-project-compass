@@ -1,19 +1,23 @@
 import logo from "../../assets/LogoHome.svg";
 import logoBall from "../../assets/bolaLogoCompass.png";
-import { BText, Button, ButtonWrapper, Container, ContainerLogo, ContainerMain, ContainerText, Footer, Header, List, MText, SText } from "./styles";
+import { BText, Button, ButtonWrapper, Container, ContainerLogo, ContainerMain, ContainerText, Footer, FooterText, Header, List, MText, SText, WelcomeText } from "./styles";
 import "./styles.ts";
 import { useNavigate } from "react-router-dom";
 import Clock from "components/Clock";
 import Timer from "components/Timer";
 import Locate from "components/Locate";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "services/fireBaseConfig";
+import { RegisterContext } from "common/contexts/Register";
+import { useContext } from "react";
+import { ref, getDatabase, get, child } from "firebase/database";
 
 export default function Home() {
   const navigate = useNavigate();
   const auth = getAuth(app);
   const user = auth.currentUser;
-  
+  const { email, password } = useContext(RegisterContext);
+
   const logout = () => {
     signOut(auth)
       .then(() => {
@@ -24,6 +28,19 @@ export default function Home() {
         console.log(error);
       });
   };
+
+  // const dbRef = ref(getDatabase());
+  // get(child(dbRef, `users/${userId}`))
+  //   .then((snapshot) => {
+  //     if (snapshot.exists()) {
+  //       console.log(snapshot.val());
+  //     } else {
+  //       console.log("No data available");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 
   return (
     <Container>
@@ -52,10 +69,14 @@ export default function Home() {
         </ContainerText>
       </ContainerMain>
       <Footer>
-        <p>{user?.displayName}</p>
-        <div className="footer__text">
+        <WelcomeText>
+          <p>
+            Seja bem-vindo, <span>{user?.displayName?.split(" ")[0]}</span>
+          </p>
+        </WelcomeText>
+        <FooterText className="footer__text">
           <p>Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixe-a aberta em segundo plano e abra uma nova janela para continuar a navegar.</p>
-        </div>
+        </FooterText>
         <Timer />
         <ButtonWrapper>
           <Button primary onClick={() => window.open("https://www.google.com.br/")}>

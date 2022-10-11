@@ -33,14 +33,13 @@ export default function Login() {
         navigate("/home");
         setLogin("");
         setPassword("");
-
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(`${errorCode} ${errorMessage}`);
+        console.log(`${errorCode} ${errorMessage}`);
         setLoginError(true);
+        setTimeout(()=>setLoginError(false), 5000)
       });
   };
 

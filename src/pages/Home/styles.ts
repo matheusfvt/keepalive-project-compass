@@ -14,7 +14,7 @@ export const Header = styled.header`
   padding: 25px 40px 0;
   color: ${black};
 
-  @media (max-width: 620px){
+  @media (max-width: 620px) {
     padding: 25px 20px 0;
   }
   @media (max-width: 575px), (max-height: 600px) {
@@ -32,8 +32,10 @@ export const List = styled.ul`
   display: flex;
   justify-content: space-between;
   list-style: none;
-  align-items: center;
-  @media (max-width: 575px), (max-height: 600px){
+  @media (max-width: 768px), (max-height: 600px) {
+    align-items: center;
+  }
+  @media (max-width: 575px), (max-height: 600px) {
     justify-content: flex-start;
   }
 `;
@@ -54,7 +56,6 @@ export const ContainerLogo = styled.li`
   @media (max-width: 425px) {
     max-width: 100px;
     max-height: 28px;
-    content: url(${logoWhite});
   }
   @media (max-width: 320px) {
     max-width: 80px;
@@ -67,10 +68,10 @@ export const ContainerMain = styled.main`
   padding: 5vw 8vw 5vw 0;
   max-height: 100%;
 
-  @media (max-width: 425px), (max-height: 600px)  {
+  @media (max-width: 425px), (max-height: 600px) {
     padding: 5vw 8vw;
   }
-  @media (max-width: 375px){
+  @media (max-width: 375px) {
     padding-bottom: 10vw;
   }
   img {
@@ -163,10 +164,10 @@ export const BText = styled.h2`
     font-size: 36px;
     margin-top: 20px;
   }
-  @media (max-width: 768px), (max-height: 600px)  {
+  @media (max-width: 768px), (max-height: 600px) {
     margin-top: 20px;
   }
-  @media (max-width: 575px){
+  @media (max-width: 575px) {
     font-size: 30px;
     margin-top: 35px;
   }
@@ -210,10 +211,12 @@ export const Footer = styled.footer`
   z-index: 1;
   bottom: 0;
   width: 100%;
+  padding-left: 5vw;
   @media (max-width: 768px), (max-height: 600px) {
     flex-direction: column;
     gap: 3vw;
     padding-top: 3vw;
+    padding-left: 0;
   }
   @media (max-width: 575px) {
     gap: 6vw;
@@ -221,41 +224,50 @@ export const Footer = styled.footer`
   }
   @media (max-width: 375px) {
     gap: 8vw;
+    padding-top: 7vw;
+  }
+`;
+
+export const WelcomeText = styled.div`
+  p {
+    font-weight: 400;
+    font-size: 16px;
+
+    @media (max-width: 768px), (max-height: 600px) {
+      font-size: 20px;
+    }
+    @media (max-width: 375px){
+      font-size: 16px;
+    }
   }
 
-  .footer__text {
-    max-width: 35%;
-    padding-right: 2%;
-    border-right: 1px solid ${white};
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 20vw;
-    @media (max-width: 1200px) {
-      margin-left: 15vw;
-    }
-    @media (max-width: 1000px) {
-      margin-left: 12vw;
-    }
-    @media (max-width: 900px) {
-      margin-left: 10vw;
-    }
+  span {
+    font-weight: 700;
+  }
+`;
+
+export const FooterText = styled.div`
+  max-width: 35%;
+  padding-right: 2%;
+  border-right: 1px solid ${white};
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px), (max-height: 600px) {
+    margin: 0 8vw;
+    max-width: 100%;
+    border: none;
+    padding: 0;
+    height: auto;
+  }
+  p {
+    font-weight: 400;
+    font-size: 12px;
+    margin: 2vw 0;
     @media (max-width: 768px), (max-height: 600px) {
-      margin: 0 8vw;
-      max-width: 100%;
-      border: none;
-      padding: 0;
-      height: auto;
-    }
-    p {
-      font-weight: 400;
-      font-size: 12px;
-      margin: 2vw 0;
-      @media (max-width: 768px), (max-height: 600px) {
-        margin: 0;
-        line-height: 2;
-      }
+      margin: 0;
+      line-height: 2;
     }
   }
 `;

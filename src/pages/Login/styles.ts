@@ -111,7 +111,7 @@ export const ContainerInput = styled.div<IError>`
   flex-direction: column;
   gap: 32px;
   @media (max-width: 375px), (max-height: 600px) {
-    gap: 25px
+    gap: 25px;
   }
   h3 {
     font-size: 30px;
@@ -138,7 +138,7 @@ export const ContainerInput = styled.div<IError>`
     padding: 20px;
     width: 100%;
     border: ${(props) => (props.appear ? `1px solid ${errorInputColor}` : "1px solid #ffffff")};
-    @media (max-width: 425px){
+    @media (max-width: 425px) {
       font-size: 14px;
     }
   }
@@ -149,7 +149,6 @@ export const ContainerInput = styled.div<IError>`
     font-size: 20px;
     right: -30px;
     transition: all ease 1s;
- 
   }
   .icon-inside {
     right: 20px;
@@ -166,19 +165,19 @@ export const ErrorMessage = styled.div<IError>`
     right: 0;
     left: 0;
     margin: 0 auto;
-    @media (max-width: 1440px){
+    @media (max-width: 1440px) {
       max-width: 70%;
     }
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
       max-width: 53%;
     }
-    @media (max-width: 575px){
+    @media (max-width: 575px) {
       max-width: 65%;
     }
-    @media (max-width: 425px){
+    @media (max-width: 425px) {
       max-width: 85%;
     }
-    @media (max-width: 375px){
+    @media (max-width: 375px) {
       max-width: 100%;
     }
   }
@@ -217,13 +216,18 @@ export const Button = styled.button`
 `;
 
 export const ClickHereMessage = styled.div`
-color: ${white};
-text-align: center;
-font-weight: 400;
-font-size: 18px;
-display: flex;
-flex-direction: column;
-span{
-  text-decoration: underline;
-}
-`
+  color: ${white};
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 575px) {
+    font-size: 16px;
+  }
+  span {
+    text-decoration: underline;
+    cursor: pointer;
+    color: lightblue;
+  }
+`;

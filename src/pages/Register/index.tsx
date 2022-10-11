@@ -8,7 +8,7 @@ import { ContainerInputRegister } from "./styles";
 import { regexLowercase, regexUppercase, regexNumber, regexSpecialCharacter, regexFullName, regexEmail } from "helper/regex";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import { app, database } from "services/fireBaseConfig";
-import { errorInputColor, white500 } from "UI/variables";
+import { correctInputColor, errorInputColor, white500 } from "UI/variables";
 import { ref, set } from "firebase/database";
 
 export default function Register() {
@@ -61,13 +61,12 @@ export default function Register() {
       console.log("senha invalida");
     }
 
-    if (password === repeatPassword) {
+    if (password !== repeatPassword || repeatPassword.length === 0) {
+      setRepeatPasswordValid(false);
+      console.log("senha nao coincide");
+    } else {
       setRepeatPasswordValid(true);
       console.log("senha COINCIDE");
-    } else {
-      setRepeatPasswordValid(false);
-      console.log('senha nao coincide');
-      
     }
   }, [username, setUsernameValid, email, setEmailValid, password, repeatPassword, setPasswordValid, setRepeatPasswordValid]);
 
@@ -79,25 +78,25 @@ export default function Register() {
     if (isUsernameValid && isEmailValid && isPasswordValid && isRepeatPasswordValid) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          set(ref(database, 'users/' + user.uid), {
+          set(ref(database, "users/" + user.uid), {
             username: username,
             email: email,
           });
           updateProfile(userCredential.user, { displayName: username });
           console.log(user.displayName);
-          console.log('usuario criado');
+          console.log("usuario criado");
+          setUsername("");
+          setEmail("");
+          setPassword("");
+          setRepeatPassword("");
           navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(`${errorCode} ${errorMessage}`);
-
-          // ..
         });
-      
     } else {
       isUsernameValid ? setErrorUsername(false) : setErrorUsername(true);
       isEmailValid ? setErrorEmail(false) : setErrorEmail(true);
