@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./styles.ts";
 import { UserContext } from "common/contexts/User";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "services/fireBaseConfig";
-
+import { app, database } from "services/fireBaseConfig";
+import { update, ref } from "firebase/database";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -23,25 +23,25 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        alert('logado')
+        const dt = new Date();
+        update(ref(database, "users/" + user.uid), {
+          last_login: dt,
+        });
+        console.log("logado");
+        setLoginError(false);
+        setTimerCount(60);
+        navigate("/home");
+        setLogin("");
+        setPassword("");
+
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(`${errorCode} ${errorMessage}`);
-        
+        setLoginError(true);
       });
-
-    if (password.length > 5) {
-      setLoginError(false);
-      setTimerCount(60);
-      navigate("/home");
-      setLogin("");
-      setPassword("");
-    } else {
-      setLoginError(true);
-    }
   };
 
   const iconInside = (ref: React.RefObject<HTMLElement>) => {

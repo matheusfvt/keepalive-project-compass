@@ -6,9 +6,24 @@ import { useNavigate } from "react-router-dom";
 import Clock from "components/Clock";
 import Timer from "components/Timer";
 import Locate from "components/Locate";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "services/fireBaseConfig";
 
 export default function Home() {
   const navigate = useNavigate();
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("usuario deslogado");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Container>
@@ -37,6 +52,7 @@ export default function Home() {
         </ContainerText>
       </ContainerMain>
       <Footer>
+        <p>{user?.displayName}</p>
         <div className="footer__text">
           <p>Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixe-a aberta em segundo plano e abra uma nova janela para continuar a navegar.</p>
         </div>
@@ -45,7 +61,7 @@ export default function Home() {
           <Button primary onClick={() => window.open("https://www.google.com.br/")}>
             Continuar navegando
           </Button>
-          <Button onClick={() => navigate("/")}>Logout</Button>
+          <Button onClick={() => logout()}>Logout</Button>
         </ButtonWrapper>
       </Footer>
     </Container>

@@ -7,8 +7,9 @@ import { RegisterContext } from "common/contexts/Register";
 import { ContainerInputRegister } from "./styles";
 import { regexLowercase, regexUppercase, regexNumber, regexSpecialCharacter, regexFullName, regexEmail } from "helper/regex";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
-import { app } from "services/fireBaseConfig";
+import { app, database } from "services/fireBaseConfig";
 import { errorInputColor, white500 } from "UI/variables";
+import { ref, set } from "firebase/database";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -80,10 +81,14 @@ export default function Register() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          set(ref(database, 'users/' + user.uid), {
+            username: username,
+            email: email,
+          });
           updateProfile(userCredential.user, { displayName: username });
-          alert("user created!");
-          // navigate("/");
-          // ...
+          console.log(user.displayName);
+          console.log('usuario criado');
+          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -92,7 +97,7 @@ export default function Register() {
 
           // ..
         });
-      navigate("/");
+      
     } else {
       isUsernameValid ? setErrorUsername(false) : setErrorUsername(true);
       isEmailValid ? setErrorEmail(false) : setErrorEmail(true);
